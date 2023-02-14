@@ -30,9 +30,31 @@ app.get("/characters", async (req, res) => {
   }
 });
 
+app.get("/comics", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=" +
+        process.env.MARVEL_API_KEY
+    );
+    res.status(200).json(response.data.results._id);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/comics/:characterId", (req, res) => {
+  try {
+    const response = axios.get(
+      "https://lereacteur-marvel-api.herokuapp.com/comics/5fc8ba1fdc33470f788f88b3?apiKey=YOUR_API_KEY"
+    );
+  } catch (error) {}
+});
+
 app.listen(3000, () => {
   console.log("Server launched ☄️!");
 });
+
+//http://localhost:3000/
 
 app.all("*", (req, res) => {
   res.status(400).json({ message: "Wrong adress" });
