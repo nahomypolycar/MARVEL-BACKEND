@@ -30,6 +30,8 @@ app.get("/characters", async (req, res) => {
   }
 });
 
+// Route pour récupérer les comics
+
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
@@ -42,20 +44,18 @@ app.get("/comics", async (req, res) => {
   }
 });
 
-app.get("/comics/:characterId", (req, res) => {
+// Une route pour récupérer les comics qui sontkliés aux perosnnages
+
+app.get("/related-comics", async (req, res) => {
   try {
-    const response = axios.get(
-      "https://lereacteur-marvel-api.herokuapp.com/comics/5fc8ba1fdc33470f788f88b3?apiKey=YOUR_API_KEY"
+    console.log(req.query);
+    const response = await axios.get(
+      "https://lereacteur-marvel-api.herokuapp.com/comics/" +
+        req.query.characterID +
+        "?apiKey=" +
+        process.env.MARVEL_API_KEY
     );
-    const comicsTab = response.data.results;
-
-    console.log("comicsTab >>>", comicsTab); // ne s'affiche pas
-
-    const charactersId = comicsTab.map((element, index) => {
-      return res.status(200).json({ element: element });
-    });
-    console.log("response >>>", response.data);
-    return res.status(200).json({ response: response.data });
+    return res.status(200).json("route des comics reliés au personnages");
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
