@@ -26,7 +26,7 @@ app.get("/characters", async (req, res) => {
 
     const comicsTab = response.data.results;
 
-    console.log("comicsTab >>>", comicsTab);
+    console.log("comicsTab >>>", comicsTab); // ne s'affiche pas
 
     const charactersId = comicsTab.map((element, index) => {
       return res.status(200).json({ element: element });
