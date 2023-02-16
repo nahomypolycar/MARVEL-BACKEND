@@ -44,7 +44,7 @@ app.get("/comics", async (req, res) => {
   }
 });
 
-// Une route pour récupérer les comics qui sontkliés aux perosnnages
+// Une route pour récupérer les comics qui sont liés aux personnages
 
 app.get("/related-comics", async (req, res) => {
   try {
@@ -58,6 +58,21 @@ app.get("/related-comics", async (req, res) => {
     return res.status(200).json("route des comics reliés au personnages");
   } catch (error) {
     return res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/characters-infos", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://lereacteur-marvel-api.herokuapp.com/character/" +
+        req.query.characterID +
+        "?apiKey=" +
+        process.env.MARVEL_API_KEY
+    );
+    console.log(response.data);
+    return res.status(200).json("route infos des perosnnages");
+  } catch (error) {
+    return res.status(200).json({ error: error.message });
   }
 });
 
