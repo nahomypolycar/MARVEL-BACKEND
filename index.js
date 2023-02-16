@@ -23,8 +23,16 @@ app.get("/characters", async (req, res) => {
       "https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=" +
         process.env.MARVEL_API_KEY
     );
+
+    const comicsTab = response.data.results;
+
+    console.log("comicsTab >>>", comicsTab);
+
+    const charactersId = comicsTab.map((element, index) => {
+      return res.status(200).json({ element: element });
+    });
     console.log("response >>>", response.data);
-    return res.status(200).json(response.data);
+    return res.status(200).json({ response: response.data });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
