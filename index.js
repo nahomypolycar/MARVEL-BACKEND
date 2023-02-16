@@ -24,7 +24,7 @@ app.get("/characters", async (req, res) => {
         process.env.MARVEL_API_KEY
     );
     console.log("response >>>", response.data);
-    return res.status(200).json({ response: response.data });
+    return res.status(200).json({ response: response.data.results });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -61,6 +61,7 @@ app.get("/related-comics", async (req, res) => {
   }
 });
 
+// Route pour récupérer les informations des personnages
 app.get("/characters-infos", async (req, res) => {
   try {
     const response = await axios.get(
@@ -70,7 +71,7 @@ app.get("/characters-infos", async (req, res) => {
         process.env.MARVEL_API_KEY
     );
     console.log(response.data);
-    return res.status(200).json("route infos des perosnnages");
+    return res.status(200).json("route infos des personnages");
   } catch (error) {
     return res.status(200).json({ error: error.message });
   }
