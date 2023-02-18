@@ -82,11 +82,9 @@ app.get("/characters-infos", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("Server launched ☄️!");
 });
-
-//http://localhost:3000/
 
 app.all("*", (req, res) => {
   res.status(400).json({ message: "Wrong adress" });
