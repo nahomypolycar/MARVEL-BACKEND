@@ -51,7 +51,7 @@ app.get("/comics", async (req, res) => {
 
 // Une route pour récupérer les comics qui sont liés aux personnages
 
-app.get("/comics/:characterId", async (req, res) => {
+app.get("/related-comics", async (req, res) => {
   try {
     console.log(req.query);
     const response = await axios.get(
