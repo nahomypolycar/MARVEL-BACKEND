@@ -43,7 +43,7 @@ app.get("/comics", async (req, res) => {
       "https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=" +
         process.env.MARVEL_API_KEY
     );
-    return res.status(200).json({ response: response.data.results });
+    return res.status(200).json({ response: response.data });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
