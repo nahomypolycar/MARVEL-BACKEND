@@ -2,10 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const axios = require("axios");
-const cors = require("cors");
-
-app.use(cors());
-
 const app = express();
 app.use(cors());
 
