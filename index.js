@@ -51,7 +51,7 @@ app.get("/comics", async (req, res) => {
 
 // Une route pour récupérer les comics qui sont liés aux personnages
 
-app.get("/related-comics", async (req, res) => {
+app.get("/comics/:characterId", async (req, res) => {
   try {
     console.log(req.query);
     const response = await axios.get(
@@ -60,7 +60,7 @@ app.get("/related-comics", async (req, res) => {
         "?apiKey=" +
         process.env.MARVEL_API_KEY
     );
-    return res.status(200).json("route des comics reliés au personnages");
+    return res.status(200).json({ response: response.data });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
