@@ -5,7 +5,7 @@ const axios = require("axios");
 const app = express();
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   try {
     //console.log("api_key", process.env.MARVEL_API_KEY); pour vérifier que la clé API est bien cachée
     return res.status(200).json("Bienvenue sur la Route /");
