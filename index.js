@@ -51,15 +51,17 @@ app.get("/comics", async (req, res) => {
 
 // Une route pour récupérer les comics qui sont liés aux personnages
 
-app.get("/comics/", async (req, res) => {
+app.get("/comics/:characterId", async (req, res) => {
   try {
-    console.log(req.query);
+    console.log("req.params", req.params.characterId);
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics/${req.query.characterID}` +
+      "https://lereacteur-marvel-api.herokuapp.com/comics/" +
+        req.params.characterId +
         "?apiKey=" +
         process.env.MARVEL_API_KEY
     );
     res.status(200).json(response.data);
+    res.send("test nahomy");
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
